@@ -75,10 +75,8 @@ pub struct SearchParams {
     #[schemars(description = "Optional system prompt")]
     pub system_prompt: Option<String>,
 
-    #[schemars(
-        description = "Model ID. Defaults to the server default. \
-                       Call the list_models tool for the current set of available models."
-    )]
+    #[schemars(description = "Model ID. Defaults to the server default. \
+                       Call the list_models tool for the current set of available models.")]
     pub model: Option<String>,
 
     #[schemars(description = "Sampling temperature (0.0 - 1.0)")]

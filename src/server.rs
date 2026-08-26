@@ -288,7 +288,10 @@ impl ClaudeServer {
 impl ServerHandler for ClaudeServer {
     fn get_info(&self) -> ServerInfo {
         ServerInfo::new(ServerCapabilities::builder().enable_tools().build())
-            .with_server_info(Implementation::new("claude-chat", env!("CARGO_PKG_VERSION")))
+            .with_server_info(Implementation::new(
+                "claude-chat",
+                env!("CARGO_PKG_VERSION"),
+            ))
             .with_instructions(
                 "Anthropic Claude MCP server. Tools: chat (with optional extended thinking), \
                  chat_with_vision, chat_with_search (live web search), list_models.",

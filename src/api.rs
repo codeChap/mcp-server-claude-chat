@@ -251,7 +251,10 @@ impl fmt::Display for MessagesResponse {
                 "tool_use" => {
                     sep(f, &mut first)?;
                     let name = block.get("name").and_then(Value::as_str).unwrap_or("?");
-                    let input = block.get("input").map(|v| v.to_string()).unwrap_or_default();
+                    let input = block
+                        .get("input")
+                        .map(|v| v.to_string())
+                        .unwrap_or_default();
                     write!(f, "[tool_use: {name}] {input}")?;
                 }
                 "" => {}
@@ -394,10 +397,15 @@ mod tests {
     #[test]
     fn display_web_search_error() {
         let r = resp(
-            vec![json!({"type": "web_search_tool_result", "content": {"type": "web_search_tool_result_error", "error_code": "max_uses_exceeded"}})],
+            vec![
+                json!({"type": "web_search_tool_result", "content": {"type": "web_search_tool_result_error", "error_code": "max_uses_exceeded"}}),
+            ],
             None,
         );
-        assert!(r.to_string().contains("[web search error: max_uses_exceeded]"));
+        assert!(
+            r.to_string()
+                .contains("[web search error: max_uses_exceeded]")
+        );
     }
 
     #[test]
